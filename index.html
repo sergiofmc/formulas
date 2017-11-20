@@ -11,37 +11,43 @@
 		angular.module('Formula-App', [])
 
 		.controller('FormulaController', function ($scope) {
-		  $scope.valorCuota = 0;
-		  $scope.capital = 0;
-		  $scope.interes = 0;
-		  $scope.periodos = 0;
-		  $scope.mensaje = "";
-		  $scope.interesDecimal = 0;
-		   
+			$scope.valorCuota = 0;
+			$scope.capital = 0;
+			$scope.interes = 0;
+			$scope.periodos = 0;
+			$scope.mensaje = "";
+			$scope.interesDecimal = 0;
+			$scope.tablaCuotas = new Array();
 		  
-		  $scope.aDecimal = function () {
-			$scope.interesDecimal=$scope.interes/100;
-		};
-		  
-		  
-		  $scope.calcularValorCuota = function () {
-			if($scope.capital == 0){
-				$scope.mensaje = "Ingrese el capital";
-			}
-			else if($scope.interes == 0){
-				$scope.mensaje = "Ingrese el interés";
-			}
-			else if($scope.periodos == 0){
-				$scope.mensaje = "Ingrese la cantidad de periodos";
-			}
-			else{
-				var potencia = Math.pow(1+$scope.interesDecimal,$scope.periodos);
-				$scope.valorCuota = ($scope.capital*(potencia*$scope.interesDecimal)/(potencia-1)).toFixed(0);
-			}
+			$scope.aDecimal = function () {
+				$scope.interesDecimal=$scope.interes/100;
+			};
+			$scope.calcularValorCuota = function () {
+				if($scope.capital == 0){
+					$scope.mensaje = "Ingrese el capital";
+				}
+				else if($scope.interes == 0){
+					$scope.mensaje = "Ingrese el interés";
+				}
+				else if($scope.periodos == 0){
+					$scope.mensaje = "Ingrese la cantidad de periodos";
+				}
+				else{
+					var potencia = Math.pow(1+$scope.interesDecimal,$scope.periodos);
+					$scope.valorCuota = ($scope.capital*(potencia*$scope.interesDecimal)/(potencia-1)).toFixed(0);
+					
+					$scope.tablaCuotas = [$scope.periodos+1];
+					for(var i = 0; i<$scope.periodos+1;++i){
+						$scope.tablaCuotas[i] = new Array();
+						$scope.tablaCuotas[i].principal = $scope.capital-(i*$scope.valorCuota);
+						$scope.tablaCuotas[i].interes = $scope.tablaCuotas[i].principal*interes;
+						$scope.tablaCuotas[i].amortizacion = scope.valorCuota-interes;
+						$scope.tablaCuotas[i].cuota = valorCuota;
+					}
+				}
+			};
+
 			
-		  };
-
-
 		  
 		});
 		})();
