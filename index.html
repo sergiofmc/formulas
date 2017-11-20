@@ -214,15 +214,34 @@
     </style>
 </head>
 <body ng-controller="FormulaController">
-	Capital:<input type=number ng-model="capital"/>
-	<br/>
-	Interes:<input type=number ng-model="interes" ng-change="aDecimal()"/>
-	<br/>
-	Cuotas:<input type=number ng-model="periodos"/>
-	<br/>
-	{{mensaje}}
-	<button ng-click="calcularValorCuota()">Calcular
-	</button>
+
+
+	<table class="table-fill">
+		<tbody class="table-hover">
+			<tr>
+				<td class="text-right">Capital</td>
+				<td class="text-right"><input type=number ng-model="capital"/></td>
+			</tr>
+			<tr>
+				<td class="text-right">Interés</td>
+				<td class="text-right"><input type=number ng-model="interes" ng-change="aDecimal()"/></td>
+			</tr>
+			<tr>
+				<td class="text-right">Cuotas</td>
+				<td class="text-right"><input type=number ng-model="periodos"/></td>
+			</tr>
+			<tr>
+				<td class="text-right" colspan=2>{{mensaje}}</td>
+				<td class="text-right">{{mensaje}}</td>
+			</tr>
+			<tr>
+				<td class="text-right" colspan=2><button ng-click="calcularValorCuota()">Calcular
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
     <br/>
 	<div class="eq-c">
 		<i>Valor </i> =  {{capital}} x
@@ -246,15 +265,15 @@
 		</thead>
 		<tbody class="table-hover">
 			<tr ng-repeat="(key,value) in tablaCuotas">
-				<td class="text-left">{{key}}</td>
-				<td class="text-left">{{value.principal}}</td>
-				<td class="text-left">{{value.amortizacion}}</td>
-				<td class="text-left">{{value.interes}}</td>
-				<td class="text-left">{{value.cuota}}</td>
+				<td class="text-right">{{key}}</td>
+				<td class="text-right">{{value.principal}}</td>
+				<td class="text-right">{{value.amortizacion}}</td>
+				<td class="text-right">{{value.interes}}</td>
+				<td class="text-right">{{value.cuota}}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<
+	
 </body>
 </html>
