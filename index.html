@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="Formula-App">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Valor Cuota</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script>
+	(function () {
+		'use strict';
+
+		angular.module('Formula-App', [])
+
+		.controller('FormulaController', function ($scope) {
+		  $scope.valorCuota = 0;
+		  $scope.capital = 0;
+		  $scope.interes = 0;
+		  $scope.periodos = 0;
+		  $scope.mensaje = "";
+		  $scope.interesDecimal = 0;
+		   
+		  
+		  $scope.aDecimal = function () {
+			$scope.interesDecimal=$scope.interes/100;
+		};
+		  
+		  
+		  $scope.calcularValorCuota = function () {
+			if($scope.capital == 0){
+				$scope.mensaje = "Ingrese el capital";
+			}
+			else if($scope.interes == 0){
+				$scope.mensaje = "Ingrese el interés";
+			}
+			else if($scope.periodos == 0){
+				$scope.mensaje = "Ingrese la cantidad de periodos";
+			}
+			else{
+				var potencia = Math.pow(1+$scope.interesDecimal,$scope.periodos);
+				$scope.valorCuota = ($scope.capital*(potencia*$scope.interesDecimal)/(potencia-1)).toFixed(0);
+			}
+			
+		  };
+
+
+		  
+		});
+		})();
+	</script>
+	<style>
+		.fraction {
+			display: inline-block;
+			vertical-align: middle; 
+			margin: 0 0.2em 0.4ex;
+			text-align: center;
+		}
+		.fraction > span {
+			display: block;
+			padding-top: 0.15em;
+		}
+		.fraction span.fdn {border-top: thin solid black;}
+		.fraction span.bar {display: none;}
+	</style>
+</head>
+<body ng-controller="FormulaController">
+	<input type=number ng-model="capital"/>
+	<br/>
+	<input type=number ng-model="interes" ng-change="aDecimal()"/>
+	<br/>
+	<input type=number ng-model="periodos"/>
+	<br/>
+	{{mensaje}}
+	<button ng-click="calcularValorCuota()">Calcular
+	</button>
+    <br/>
+	<div class="eq-c">
+		<i>Valor </i> =  {{capital}} x
+		<div class="fraction">
+		<span class="fup">(1+{{interesDecimal}})<sup>{{periodos}}</sup> x {{interesDecimal}}</span>
+		<span class="bar">/</span>
+		<span class="fdn">(1+{{interesDecimal}})<sup>{{periodos}}</sup> - 1 </span>
+		</div>
+		= {{valorCuota}}
+	</div>		
+</body>
+</html>
