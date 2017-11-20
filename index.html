@@ -42,14 +42,11 @@
 						$scope.tablaCuotas[i].principal = $scope.capital-(i*$scope.valorCuota);
 						$scope.tablaCuotas[i].interes = $scope.tablaCuotas[i].principal*$scope.interesDecimal;
 						$scope.tablaCuotas[i].amortizacion = $scope.valorCuota-$scope.tablaCuotas[i].interes;
-						$scope.tablaCuotas[i].cuota = valorCuota;
+						$scope.tablaCuotas[i].cuota = $scope.valorCuota;
 					}
 					console.log($scope.tablaCuotas);
 				}
 			};
-
-			
-		  
 		});
 		})();
 	</script>
