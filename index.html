@@ -62,11 +62,11 @@
 	</style>
 </head>
 <body ng-controller="FormulaController">
-	<input type=number ng-model="capital"/>
+	Capital:<input type=number ng-model="capital"/>
 	<br/>
-	<input type=number ng-model="interes" ng-change="aDecimal()"/>
+	Interes:<input type=number ng-model="interes" ng-change="aDecimal()"/>
 	<br/>
-	<input type=number ng-model="periodos"/>
+	Cuotas:<input type=number ng-model="periodos"/>
 	<br/>
 	{{mensaje}}
 	<button ng-click="calcularValorCuota()">Calcular
