@@ -40,8 +40,8 @@
 					for(var i = 0; i<$scope.periodos+1;++i){
 						$scope.tablaCuotas[i] = new Array();
 						$scope.tablaCuotas[i].principal = $scope.capital-(i*$scope.valorCuota);
-						$scope.tablaCuotas[i].interes = $scope.tablaCuotas[i].principal*interes;
-						$scope.tablaCuotas[i].amortizacion = scope.valorCuota-interes;
+						$scope.tablaCuotas[i].interes = $scope.tablaCuotas[i].principal*$scope.interesDecimal;
+						$scope.tablaCuotas[i].amortizacion = $scope.valorCuota-$scope.tablaCuotas[i].interes;
 						$scope.tablaCuotas[i].cuota = valorCuota;
 					}
 					console.log($scope.tablaCuotas);
